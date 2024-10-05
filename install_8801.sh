@@ -134,8 +134,9 @@ install_x-ui() {
     fi
 
     tar zxvf xui-8801.tar.gz
-    rm xui-8801 -f
-    cd 8801
+    mv 8801 x-ui-8801
+    rm xui-8801.tar.gz -f
+    cd x-ui-8801
     chmod +x x-ui bin/xray-linux-${arch}
     cp -f x-ui-8801.service /etc/systemd/system/
     # wget --no-check-certificate -O /usr/bin/x-ui https://raw.githubusercontent.com/vaxilu/x-ui/main/x-ui.sh
