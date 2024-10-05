@@ -93,9 +93,9 @@ config_after_install() {
         read -p "请设置面板访问端口:" config_port
         echo -e "${yellow}您的面板访问端口将设定为:${config_port}${plain}"
         echo -e "${yellow}确认设定,设定中${plain}"
-        /usr/local/x-ui/x-ui-8801 setting -username ${config_account} -password ${config_password}
+        /usr/local/x-ui-8801/x-ui-8801 setting -username ${config_account} -password ${config_password}
         echo -e "${yellow}账户密码设定完成${plain}"
-        /usr/local/x-ui/x-ui-8801 setting -port ${config_port}
+        /usr/local/x-ui-8801/x-ui-8801 setting -port ${config_port}
         echo -e "${yellow}面板端口设定完成${plain}"
     else
         echo -e "${red}已取消,所有设置项均为默认设置,请及时修改${plain}"
@@ -103,7 +103,7 @@ config_after_install() {
 }
 
 install_x-ui() {
-    systemctl stop x-ui
+    systemctl stop x-ui-8801
     cd /usr/local/
 
     # if [ $# == 0 ]; then
