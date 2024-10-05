@@ -93,9 +93,9 @@ config_after_install() {
         read -p "请设置面板访问端口:" config_port
         echo -e "${yellow}您的面板访问端口将设定为:${config_port}${plain}"
         echo -e "${yellow}确认设定,设定中${plain}"
-        /usr/local/x-ui-8801/x-ui-8801 setting -username ${config_account} -password ${config_password}
+        /usr/local/x-ui-8802/x-ui-8802 setting -username ${config_account} -password ${config_password}
         echo -e "${yellow}账户密码设定完成${plain}"
-        /usr/local/x-ui-8801/x-ui-8801 setting -port ${config_port}
+        /usr/local/x-ui-8802/x-ui-8802 setting -port ${config_port}
         echo -e "${yellow}面板端口设定完成${plain}"
     else
         echo -e "${red}已取消,所有设置项均为默认设置,请及时修改${plain}"
@@ -103,7 +103,7 @@ config_after_install() {
 }
 
 install_x-ui() {
-    systemctl stop x-ui-8801
+    systemctl stop x-ui-8802
     cd /usr/local/
 
     # if [ $# == 0 ]; then
@@ -120,29 +120,29 @@ install_x-ui() {
     #     fi
     # else
         # last_version=$1
-        url="https://github.com/yaodi962464/xui/releases/download/v1.0/xui-8801.tar.gz"
+        url="https://github.com/yaodi962464/xui/releases/download/v1.0/xui-8802.tar.gz"
         echo -e "开始安装 x-ui v$1"
-        wget -N --no-check-certificate -O /usr/local/xui-8801.tar.gz ${url}
+        wget -N --no-check-certificate -O /usr/local/xui-8802.tar.gz ${url}
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 x-ui v$1 失败，请确保此版本存在${plain}"
             exit 1
         fi
     # fi
 
-    if [[ -e /usr/local/8801/ ]]; then
-        rm /usr/local/8801/ -rf
+    if [[ -e /usr/local/8802/ ]]; then
+        rm /usr/local/8802/ -rf
     fi
 
-    tar zxvf xui-8801.tar.gz
-    mv 8801 x-ui-8801
-    rm xui-8801.tar.gz -f
-    cd x-ui-8801
+    tar zxvf xui-8802.tar.gz
+    mv 8802 x-ui-8802
+    rm xui-8802.tar.gz -f
+    cd x-ui-8802
     chmod +x x-ui bin/xray-linux-${arch}
-    cp -f x-ui-8801.service /etc/systemd/system/
+    cp -f x-ui-8802.service /etc/systemd/system/
     # wget --no-check-certificate -O /usr/bin/x-ui https://raw.githubusercontent.com/vaxilu/x-ui/main/x-ui.sh
-    cp -f x-ui-8801.sh /usr/bin/x-ui-8801
-    chmod +x /usr/local/x-ui-8801/x-ui-8801.sh
-    chmod +x /usr/bin/x-ui-8801
+    cp -f x-ui-8802.sh /usr/bin/x-ui-8802
+    chmod +x /usr/local/x-ui-8802/x-ui-8802.sh
+    chmod +x /usr/bin/x-ui-8802
     config_after_install
     #echo -e "如果是全新安装，默认网页端口为 ${green}54321${plain}，用户名和密码默认都是 ${green}admin${plain}"
     #echo -e "请自行确保此端口没有被其他程序占用，${yellow}并且确保 54321 端口已放行${plain}"
@@ -151,21 +151,21 @@ install_x-ui() {
     #echo -e "如果是更新面板，则按你之前的方式访问面板"
     #echo -e ""
     systemctl daemon-reload
-    systemctl enable x-ui-8801
-    systemctl start x-ui-8801
+    systemctl enable x-ui-8802
+    systemctl start x-ui-8802
     echo -e "${green}x-ui v${last_version}${plain} 安装完成，面板已启动，"
     echo -e ""
-    echo -e "x-ui-8801 管理脚本使用方法: "
+    echo -e "x-ui-8802 管理脚本使用方法: "
     echo -e "----------------------------------------------"
-    echo -e "x-ui-8801             - 显示管理菜单 (功能更多)"
-    echo -e "x-ui-8801  start        - 启动 x-ui 面板"
-    echo -e "x-ui-8801  stop         - 停止 x-ui 面板"
-    echo -e "x-ui-8801  restart      - 重启 x-ui 面板"
-    echo -e "x-ui-8801  status       - 查看 x-ui 状态"
-    echo -e "x-ui-8801  enable       - 设置 x-ui 开机自启"
-    echo -e "x-ui-8801  disable      - 取消 x-ui 开机自启"
-    echo -e "x-ui-8801  log          - 查看 x-ui 日志"
-    echo -e "x-ui-8801  v2-ui        - 迁移本机器的 v2-ui 账号数据至 x-ui"
+    echo -e "x-ui-8802             - 显示管理菜单 (功能更多)"
+    echo -e "x-ui-8802  start        - 启动 x-ui 面板"
+    echo -e "x-ui-8802  stop         - 停止 x-ui 面板"
+    echo -e "x-ui-8802  restart      - 重启 x-ui 面板"
+    echo -e "x-ui-8802  status       - 查看 x-ui 状态"
+    echo -e "x-ui-8802  enable       - 设置 x-ui 开机自启"
+    echo -e "x-ui-8802  disable      - 取消 x-ui 开机自启"
+    echo -e "x-ui-8802  log          - 查看 x-ui 日志"
+    echo -e "x-ui-8802  v2-ui        - 迁移本机器的 v2-ui 账号数据至 x-ui"
  
     echo -e "----------------------------------------------"
 }
