@@ -140,7 +140,7 @@ install_x-ui() {
     chmod +x x-ui bin/xray-linux-${arch}
     cp -f x-ui-8801.service /etc/systemd/system/
     # wget --no-check-certificate -O /usr/bin/x-ui https://raw.githubusercontent.com/vaxilu/x-ui/main/x-ui.sh
-    cp x-ui-8801.sh x-ui-8801
+    cp x-ui-8801.sh /usr/bin/x-ui-8801
     chmod +x /usr/local/x-ui-8801/x-ui-8801.sh
     chmod +x /usr/bin/x-ui-8801
     config_after_install
